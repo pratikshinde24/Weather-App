@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span{
+            color: red;
+        }
+        button:hover{
+            background-color: blue;
+        }
+    </style>
+    <script>
+         let selectoperation=null;
+         
+          function setoperation(operation){
+             selectoperation=operation;
+          }
+          function calculate(){
+            let num1= parseInt(document.getElementById("fnum").value)
+            let num2=parseInt(document.getElementById("snum").value) 
+            let result;
+            
+            if(num1.length==0){
+                document.getElementById("span1").innerHTML="Enter first number !";
+            }
+            else if(num2.length==0){
+                document.getElementById("span2").innerHTML="Enter second number !";
+            }else if(isNaN(num1) || isNaN(num2)){
+
+                document.getElementById("span2").innerHTML="Enter enter only number !";
+            }
+            else{
+                switch(selectoperation){
+                    
+                   case 'add':
+                    result=num1 + num2;
+                    document.getElementById("span3").innerHTML="Result="+result;
+                    break;
+                  case 'sub':
+                    result=num1-num2;
+                    document.getElementById("span3").innerHTML="Result="+result;
+                    break;
+                  case 'mul':
+                    result=num1*num2;
+                    document.getElementById("span3").innerHTML="Result="+result;
+                    break;
+                  case 'div':
+                    if(num2 !==0){
+                        result=num1/num2;
+                        document.getElementById("span3").innerHTML="Result="+result;
+                    }
+                    else{
+                        result="Cannot divide by 0 !"
+                    }
+                    break;
+                  default :
+                    result="Invalid operation"
+                }
+            }
+            
+          }
+
+    </script>
+</head>
+<body>
+    <h1>User Validation From</h1>
+    Enter first number : <input type="text" id="fnum"><span id="span1"></span><br>
+    Enter second number : <input type="text" id="snum"><span id="span2"></span><br>
+   
+    <input type="radio" id="add" name="operation" onclick="setoperation('add')"><label>Addition</label>
+    <input type="radio" id="sub" name="operation" onclick="setoperation('sub')"><label>Substraction</label><br>
+    <input type="radio" id="mul" name="operation" onclick="setoperation('mul')"><label>Multiple</label>
+    <input type="radio" id="div" name="operation" onclick="setoperation('div')"><label>Division</label> <br><br>
+
+    <button onclick="calculate()">Click for answers</button> <br><br>
+    
+<h1><span id="span3"></span></h1>
+</body>
+</html>
